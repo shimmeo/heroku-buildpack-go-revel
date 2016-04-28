@@ -158,7 +158,7 @@ if test -e $build/Godeps
 then
     echo "-----> Copying workspace"
     #cp -R $(godep path)/* $GOPATH
-    cp -Rv vendor/* $GOPATH
+    cp -Rv vendor/* $GOPATH/src
     echo "-----> Running: godep go install ${FLAGS[@]} ./..."
     godep go install "${FLAGS[@]}" ./...
 else
