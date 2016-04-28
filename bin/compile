@@ -148,8 +148,9 @@ then
 fi
 
 #update godep
-echo "updating/installing godep"
+echo "-----> updating/installing godep"
 go get -u github.com/kr/godep
+export GO15VENDOREXPERIMENT=1
 
 unset GIT_DIR # unset git dir or it will mess with goinstall
 cd $p
