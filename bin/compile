@@ -166,8 +166,9 @@ else
     go get "${FLAGS[@]}" ./...
 fi
 
-
+echo "-----> adding ~/bin to path"
 mkdir -p $build/.profile.d
 echo 'PATH=$PATH:$HOME/bin' > $build/.profile.d/go.sh
 
+echo "-----> installing revel"
 go get github.com/revel/cmd/revel
