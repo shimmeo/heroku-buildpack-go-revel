@@ -159,7 +159,7 @@ then
     echo "-----> Copying workspace"
     #cp -R $(godep path)/* $GOPATH
     cp -R vendor/* $GOPATH/src
-    echo "-----> Running: godep go install ${FLAGS[@]} ./..."
+    echo "-----> Running: go install ${FLAGS[@]} ./..."
     go install "${FLAGS[@]}" ./...
 else
     echo "-----> Running: go get ${FLAGS[@]} ./..."
