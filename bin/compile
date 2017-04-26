@@ -3,7 +3,7 @@
 
 set -eo pipefail
 
-pushd
+pushd .
 
 echo "-----&gt; Downloading and Installing libsndfile"
 # change to the the BUILD_DIR ($1)
