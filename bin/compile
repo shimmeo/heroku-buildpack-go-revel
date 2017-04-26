@@ -16,7 +16,7 @@ mkdir -p vendor/libsndfile
 tar -C vendor/libsndfile -xvf libsndfile.tar.gz
 
 echo $PKG_CONFIG_PATH
-export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}";"${1}/vendor/libsndfile/lib/pkgconfig/
+export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}";"${1}"/vendor/libsndfile/lib/pkgconfig/
 echo $PKG_CONFIG_PATH
 
 popd
