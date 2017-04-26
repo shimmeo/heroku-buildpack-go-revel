@@ -16,7 +16,7 @@ mkdir -p vendor/libsndfile
 tar -C vendor/libsndfile -xvf libsndfile.tar.gz
 
 echo $CFLAGS
-CFLAGS=$CFLAGS -I "${1}"/vendor/libsndfile/lib/pkgconfig
+CFLAGS="$CFLAGS -I ${1}/vendor/libsndfile/lib/pkgconfig"
 export CFLAGS
 echo -- $CFLAGS
 
