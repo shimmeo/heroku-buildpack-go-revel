@@ -5,7 +5,7 @@ set -eo pipefail
 
 pushd .
 
-echo "-----&gt; Downloading and Installing libsndfile"
+echo "-----> Downloading and Installing libsndfile"
 # change to the the BUILD_DIR ($1)
 cd $1
 # download the binary (-O) silently (-s)
@@ -14,6 +14,8 @@ curl https://s3.amazonaws.com/libsndfile-binary/libsndfile.tar.gz -s -O
 mkdir -p vendor/libsndfile
 # untar the binary to the directory we want
 tar -C vendor/libsndfile -xvf libsndfile.tar.gz
+
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH;$1/vendor/libsndfile/lib/pkgconfig/
 
 popd
 
