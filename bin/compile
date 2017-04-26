@@ -3,6 +3,21 @@
 
 set -eo pipefail
 
+pushd
+
+echo "-----&gt; Downloading and Installing libsndfile"
+# change to the the BUILD_DIR ($1)
+cd $1
+# download the binary (-O) silently (-s)
+curl https://s3.amazonaws.com/libsndfile-binary/libsndfile.tar.gz -s -O
+# make a directory to untar (like unzip) the binary
+mkdir -p vendor/libsndfile
+# untar the binary to the directory we want
+tar -C vendor/libsndfile -xvf libsndfile.tar.gz
+
+popd
+
+
 # Go releases for Darwin beginning with 1.2rc1
 # have included more than one build, depending
 # on the specific version of Mac OS X. Try to
