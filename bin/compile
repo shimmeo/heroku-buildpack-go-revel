@@ -199,4 +199,4 @@ echo "       this is just to launch faster than running revel run mashday prod $
 if [ -d ./exec ] ; then
     rm -r ./exec >> /dev/null
 fi
-revel build mashday ./exec prod
+$GOPATH/bin/revel build mashday ./exec prod
