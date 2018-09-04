@@ -192,6 +192,7 @@ mkdir -p $build/.profile.d
 echo 'PATH=$PATH:$HOME/bin' > $build/.profile.d/go.sh
 
 echo "-----> installing revel"
+mkdir $GOPATH/bin
 go get github.com/revel/cmd/revel
 
 echo "-----> building executable"
