@@ -196,5 +196,7 @@ go get github.com/revel/cmd/revel
 
 echo "-----> building executable"
 echo "       this is just to launch faster than running revel run mashday prod $PORT"
-rm -r ./exec >> /dev/null
+if [ -d ./exec ] ; then
+    rm -r ./exec >> /dev/null
+fi
 revel build mashday ./exec prod
