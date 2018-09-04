@@ -193,3 +193,8 @@ echo 'PATH=$PATH:$HOME/bin' > $build/.profile.d/go.sh
 
 echo "-----> installing revel"
 go get github.com/revel/cmd/revel
+
+echo "-----> building executable"
+echo "       this is just to launch faster than running revel run mashday prod $PORT"
+rm -r ./exec >> /dev/null
+revel build mashday ./exec prod
