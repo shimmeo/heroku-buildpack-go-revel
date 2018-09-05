@@ -209,10 +209,4 @@ $GOBIN/revel build mashday /tmp/mashday prod
 mv /tmp/mashday exec
 
 echo "-----> Now we want to delete everything else"
-du -sk exec/*
-echo '-1'
-du -sk exec/*/*
-echo '-2'
-du -sk exec/*/*/*
-echo '-3'
-du -sk exec/*/*/*/*
+du -sk *
