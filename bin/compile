@@ -206,7 +206,7 @@ if [ -d /tmp/mashday ] ; then
 fi
 
 $GOBIN/revel build mashday /tmp/mashday prod
-mv /tmp/mashday exec
+mv /tmp/mashday $build/exec
 
 echo "-----> Now we want to delete everything else"
 du -sk *
