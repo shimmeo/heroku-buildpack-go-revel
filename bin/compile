@@ -201,8 +201,12 @@ echo "       but it might take a few minutes now..."
 if [ -d ./exec ] ; then
     rm -r ./exec >> /dev/null
 fi
+if [ -d /tmp/mashday ] ; then
+    rm -r /tmp/mashday >> /dev/null
+fi
 
-$GOBIN/revel build mashday ./exec prod
+$GOBIN/revel build mashday /tmp/mashday prod
+mv /tmp/mashday exec
 
 echo "-----> Now we want to delete everything else"
 du -sk exec/*
