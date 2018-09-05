@@ -208,5 +208,8 @@ fi
 $GOBIN/revel build mashday /tmp/mashday prod
 mv /tmp/mashday $build/exec
 
-echo "-----> Now we want to delete everything else"
-du -sk *
+echo "-----> Now we want to delete everything else big"
+#du -sk *
+rm -r public
+rm -r test-scripts
+rm -r vendor
