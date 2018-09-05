@@ -211,4 +211,6 @@ ls .
 echo '---'
 pwd
 echo '---'
+ls bin
+echo '---'
 $GOPATH/bin/revel build mashday ./exec prod
