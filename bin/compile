@@ -205,4 +205,5 @@ fi
 $GOBIN/revel build mashday ./exec prod
 
 echo "-----> Now we want to delete everything else"
-du -sk *
+du -sk exec/*
+du -sk exec/*/*
