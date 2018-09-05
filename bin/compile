@@ -197,24 +197,12 @@ go get github.com/revel/cmd/revel
 
 echo "-----> building executable"
 echo "       this is just to launch faster than running revel run mashday prod $PORT"
+echo "       but it might take a few minutes now..."
 if [ -d ./exec ] ; then
     rm -r ./exec >> /dev/null
 fi
-echo '--- 1'
-echo $GOPATH
-echo '--- 2'
-ls $GOPATH
-echo '--- 3'
-ls $GOPATH/bin
-echo '--- 4'
-ls .
-echo '--- 5'
-pwd
-echo '--- 6'
-ls $HOME/bin
-echo '--- 7'
-echo $GOBIN
-echo '--- 8'
-ls $GOBIN
-echo '--- 9'
+
 $GOBIN/revel build mashday ./exec prod
+
+echo "-----> Now we want to delete everything else"
+du -sk *
