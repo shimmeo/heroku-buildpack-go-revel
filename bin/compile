@@ -8,20 +8,20 @@ pushd .
 echo "-----> Downloading and Installing libsndfile"
 # change to the the BUILD_DIR ($1)
 cd $1
-# download the binary (-O) silently (-s)
-curl https://s3-eu-west-1.amazonaws.com/soundtracktor-public/libsndfile-1.0.28.tar.gz -s -O
-# make a directory to untar (like unzip) the binary
-mkdir -p vendor/libsndfile
-# untar the binary to the directory we want
-tar -C vendor/libsndfile -xvf libsndfile-1.0.28.tar.gz
+## download the binary (-O) silently (-s)
+#curl https://s3-eu-west-1.amazonaws.com/soundtracktor-public/libsndfile-1.0.28.tar.gz -s -O
+## make a directory to untar (like unzip) the binary
+#mkdir -p vendor/libsndfile
+## untar the binary to the directory we want
+#tar -C vendor/libsndfile -xvf libsndfile-1.0.28.tar.gz
 
-CFLAGS="$CFLAGS -I ${1}/vendor/libsndfile/lib/pkgconfig"
-export CFLAGS
+#CFLAGS="$CFLAGS -I ${1}/vendor/libsndfile/lib/pkgconfig"
+#export CFLAGS
 
-PKG_CONFIG_PATH="${1}"/vendor/libsndfile/lib/pkgconfig:"${PKG_CONFIG_PATH}"
-export PKG_CONFIG_PATH
+#PKG_CONFIG_PATH="${1}"/vendor/libsndfile/lib/pkgconfig:"${PKG_CONFIG_PATH}"
+#export PKG_CONFIG_PATH
 
-popd
+#popd
 
 
 # Go releases for Darwin beginning with 1.2rc1
@@ -169,13 +169,13 @@ then
 fi
 
 #update godep
-echo "-----> updating/installing godep"
-go get -u github.com/golang/dep/cmd/dep
+#echo "-----> updating/installing godep"
+#go get -u github.com/golang/dep/cmd/dep
 #export GO15VENDOREXPERIMENT=1
 
 unset GIT_DIR # unset git dir or it will mess with goinstall
 cd $p
-if test -e $build/Godeps
+if test -e $build/vendor
 then
     echo "-----> Copying workspace"
     #cp -R $(godep path)/* $GOPATH
