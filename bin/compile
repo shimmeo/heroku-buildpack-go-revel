@@ -129,6 +129,15 @@ GOROOT=$build/.goroot export GOROOT
 GOPATH=$build/.go export GOPATH
 PATH=$GOROOT/bin:$PATH
 
+echo debugging...
+for i in $GOBIN $GOROOT $GOPATH
+do
+    echo
+    echo
+    echo $i
+    echo
+    find $i
+done
 
 # if ! (which hg >/dev/null && which bzr >/dev/null)
 # then
