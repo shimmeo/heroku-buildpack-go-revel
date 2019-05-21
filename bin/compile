@@ -126,21 +126,21 @@ GOPATH=$build/.go export GOPATH
 PATH=$GOROOT/bin:$PATH
 
 
-if ! (which hg >/dev/null && which bzr >/dev/null)
-then
-    echo -n "       Installing Virtualenv..."
-    virtualenv --python $python --distribute --never-download --prompt='(venv) ' $venv > /dev/null 2>&1
-    . $venv/bin/activate > /dev/null 2>&1
-    echo " done"
+# if ! (which hg >/dev/null && which bzr >/dev/null)
+# then
+#     echo -n "       Installing Virtualenv..."
+#     virtualenv --python $python --distribute --never-download --prompt='(venv) ' $venv > /dev/null 2>&1
+#     . $venv/bin/activate > /dev/null 2>&1
+#     echo " done"
 
-    echo -n "       Installing Mercurial..."
-    pip install mercurial > /dev/null 2>&1
-    echo " done"
+#     #echo -n "       Installing Mercurial..."
+#     #pip install mercurial > /dev/null 2>&1
+#     #echo " done"
 
-    echo -n "       Installing Bazaar..."
-    pip install bzr > /dev/null 2>&1
-    echo " done"
-fi
+#     #echo -n "       Installing Bazaar..."
+#     #pip install bzr > /dev/null 2>&1
+#     #echo " done"
+# fi
 
 p=$GOPATH/src/$name
 mkdir -p $p
