@@ -130,7 +130,7 @@ GOPATH=$build/.go export GOPATH
 PATH=$GOROOT/bin:$PATH
 
 echo debugging...
-for i in $GOBIN $GOROOT $GOPATH
+for i in $build $GOBIN $GOROOT $GOPATH
 do
     echo
     echo
