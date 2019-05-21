@@ -120,6 +120,10 @@ fi
 mkdir -p $build/bin
 cp -R $cache/$ver/go $build/.goroot
 
+echo gobin:  $GOBIN
+echo goroot: $GOROOT
+echo gopath: $GOPATH
+
 GOBIN=$build/bin export GOBIN
 GOROOT=$build/.goroot export GOROOT
 GOPATH=$build/.go export GOPATH
