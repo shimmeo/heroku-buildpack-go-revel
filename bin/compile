@@ -94,8 +94,12 @@ else
     exit 1
 fi
 
+echo $ver
+
 file=${GOFILE:-$ver.$(uname|tr A-Z a-z)-amd64$(platext $ver).tar.gz}
 url=${GOURL:-$(urlfor $ver $file)}
+
+echo $url
 
 if test -e $build/bin && ! test -d $build/bin
 then
@@ -123,24 +127,24 @@ mkdir -p $build/bin
 mkdir -p $build/.go
 cp -R $cache/$ver/go $build/.goroot
 
-echo gobin:  $GOBIN
-echo goroot: $GOROOT
-echo gopath: $GOPATH
+# echo gobin:  $GOBIN
+# echo goroot: $GOROOT
+# echo gopath: $GOPATH
 
 GOBIN=$build/bin export GOBIN
 GOROOT=$build/.goroot export GOROOT
 GOPATH=$build/.go export GOPATH
 PATH=$GOROOT/bin:$PATH
 
-echo debugging...
-for i in $build $GOBIN $GOROOT $GOPATH
-do
-    echo
-    echo
-    echo $i
-    echo
-    find $i
-done
+# echo debugging...
+# for i in $build $GOBIN $GOROOT $GOPATH
+# do
+#     echo
+#     echo
+#     echo $i
+#     echo
+#     find $i
+# done
 
 # if ! (which hg >/dev/null && which bzr >/dev/null)
 # then
