@@ -187,6 +187,10 @@ fi
 
 unset GIT_DIR # unset git dir or it will mess with goinstall
 cd $p
+echo '=== debug'
+pwd
+find .
+echo '=== debug'
 if test -e $build/vendor
 then
     echo "-----> Copying workspace"
