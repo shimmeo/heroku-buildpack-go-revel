@@ -231,3 +231,6 @@ echo "-----> Now we want to delete everything else big"
 rm -r public
 rm -r test-scripts
 #rm -r vendor
+
+echo "-----> Displaying all files with sizes"
+find . -exec ls -lh {} \;
