@@ -231,7 +231,6 @@ cd $1
 #du -sk *
 rm -r public
 rm -r test-scripts
-rm -rf .git
 #rm -r vendor
 
 echo "-----> Displaying all files with sizes"
