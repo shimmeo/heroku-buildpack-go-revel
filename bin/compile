@@ -227,6 +227,7 @@ $GOBIN/revel build mashday /tmp/mashday prod
 mv /tmp/mashday $build/exec
 
 echo "-----> Now we want to delete everything else big"
+cd $1
 #du -sk *
 rm -r public
 rm -r test-scripts
