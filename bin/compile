@@ -228,10 +228,9 @@ mv /tmp/mashday $build/exec
 
 echo "-----> Now we want to delete everything else big"
 cd $1
-#du -sk *
-rm -r public
-rm -r test-scripts
-#rm -r vendor
+rm -r .go/src
+rm -r .go/src/mashday/public
+rm -r .go/src/mashday/test-scripts
 
-echo "-----> Displaying all files with sizes"
-find . -exec du -sk {} \; | sort -n
+echo "-----> Displaying top 100 files and dirs with sizes"
+find . -exec du -sk {} \; | sort -n | tail -100
