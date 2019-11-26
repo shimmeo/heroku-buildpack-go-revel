@@ -230,7 +230,8 @@ echo "-----> Now we want to delete everything else big"
 #du -sk *
 rm -r public
 rm -r test-scripts
+rm -rf .git
 #rm -r vendor
 
 echo "-----> Displaying all files with sizes"
-find . -exec ls -lh {} \;
+find . -exec du -sk {} \; | sort -n
