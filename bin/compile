@@ -3,11 +3,79 @@
 
 set -eo pipefail
 
-pushd .
+echo '---- > Downloading and installing ffmpeg'
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
+VENDOR_BIN_DIR="$BUILD_DIR/vendor/bin"
+PROFILE_PATH="$BUILD_DIR/.profile.d/ffmpeg.sh"
+
+PROFILE_PATH1="$BUILD_DIR/.profile.d/ffmpeg-10bit.sh"
+PROFILE_PATH2="$BUILD_DIR/.profile.d/ffprobe.sh"
+PROFILE_PATH3="$BUILD_DIR/.profile.d/ffserver.sh"
+PROFILE_PATH4="$BUILD_DIR/.profile.d/qt-faststart.sh"
+
+
+FFMPEG_BIN_URL="http://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz"
+if [ -f "$ENV_DIR/FFMPEG_BIN_URL" ]; then
+  FFMPEG_BIN_URL=$(cat $ENV_DIR/FFMPEG_BIN_URL)
+fi
+FFMPEG_FILE=${FFMPEG_BIN_URL##*/}
+
+mkdir="mkdir -p"
+case ${FFMPEG_FILE##*.} in
+  bz2) tar="tar xj" ;;
+  gz)  tar="tar xz" ;;
+  xz)  tar="tar x"  ;;
+  *)
+    echo "Fail to uncompress $FFMPEG_FILE because only xz, gzip, bzip2 are supported." | indent
+    exit 1
+    ;;
+esac
+download="curl -L -s --create-dirs -o"
+extract="${tar} -C $VENDOR_BIN_DIR --strip-components 1 --wildcards -f"
+
+
+echo "-----> Installing ffmpeg, ffmpeg-10bit, ffprobe, ffserver and qt-faststart ..."
+
+$mkdir $VENDOR_BIN_DIR
+$mkdir ${PROFILE_PATH%/*}
+
+$mkdir ${PROFILE_PATH1%/*}
+$mkdir ${PROFILE_PATH2%/*}
+$mkdir ${PROFILE_PATH3%/*}
+$mkdir ${PROFILE_PATH4%/*}
+
+
+
+if [ ! -f "$CACHE_DIR/$FFMPEG_FILE" ]; then
+  echo "downloading ffmpeg: $FFMPEG_BIN_URL" | indent
+  $download $CACHE_DIR/$FFMPEG_FILE $FFMPEG_BIN_URL
+  #TODO sha256sum $CACHE_DIR/$FFMPEG_FILE
+fi
+
+
+$extract $CACHE_DIR/$FFMPEG_FILE 
+
+echo "exporting PATH" | indent
+echo 'export PATH="$PATH:$HOME/vendor/bin"' >> $PROFILE_PATH
+
+echo 'export PATH="$PATH:$HOME/vendor/bin"' >> $PROFILE_PATH1
+echo 'export PATH="$PATH:$HOME/vendor/bin"' >> $PROFILE_PATH2
+echo 'export PATH="$PATH:$HOME/vendor/bin"' >> $PROFILE_PATH3
+echo 'export PATH="$PATH:$HOME/vendor/bin"' >> $PROFILE_PATH4
+
+
+
 
 echo "-----> Downloading and Installing libsndfile"
 # change to the the BUILD_DIR ($1)
-cd $1
+
 ## download the binary (-O) silently (-s)
 #curl https://s3-eu-west-1.amazonaws.com/soundtracktor-public/libsndfile-1.0.28.tar.gz -s -O
 ## make a directory to untar (like unzip) the binary
@@ -23,6 +91,9 @@ cd $1
 
 #popd
 
+echo "---- > Installing Go"
+cd $1
+pushd .
 
 # Go releases for Darwin beginning with 1.2rc1
 # have included more than one build, depending
