@@ -59,7 +59,8 @@ if [ ! -f "$CACHE_DIR/$FFMPEG_FILE" ]; then
   #TODO sha256sum $CACHE_DIR/$FFMPEG_FILE
 fi
 
-
+echo "extacting ffmpeg: $FFMPEG_BIN_URL" | indent
+echo "$extract $CACHE_DIR/$FFMPEG_FILE" | indent
 $extract $CACHE_DIR/$FFMPEG_FILE 
 
 echo "exporting PATH" | indent
