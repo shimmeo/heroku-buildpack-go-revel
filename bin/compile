@@ -269,7 +269,7 @@ then
 else
   echo "-----> Running folder not found. Running: go mod vendor"
   go mod vendor
-if
+fi
 
 echo "-----> Copying workspace"
 mv vendor/* $GOPATH/src
