@@ -265,9 +265,9 @@ find .
 echo '=== debug'
 if test -e $build/vendor
 then
-  ;
+  echo "-----> vendor folder found."
 else
-  echo "-----> Running: go mod vendor"
+  echo "-----> Running folder not found. Running: go mod vendor"
   go mod vendor
 if
 
