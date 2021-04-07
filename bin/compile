@@ -139,15 +139,6 @@ then arch=amd64
 fi
 plat=$(uname|tr A-Z a-z)-$arch
 
-# Python
-venv=$cache/venv
-mkdir -p $cache/pip
-python=python2.7
-PATH=$buildpack/$plat/bin:$venv/bin:$PATH
-
-virtualenv() {
-    python "$buildpack/vendor/virtualenv-1.11.6/virtualenv.py" "$@"
-}
 
 if test -f $build/.godir
 then
@@ -201,32 +192,6 @@ GOROOT=$build/.goroot export GOROOT
 GOPATH=$build/.go export GOPATH
 PATH=$GOROOT/bin:$PATH
 
-# echo debugging...
-# for i in $build $GOBIN $GOROOT $GOPATH
-# do
-#     echo
-#     echo
-#     echo $i
-#     echo
-#     find $i
-# done
-
-# if ! (which hg >/dev/null && which bzr >/dev/null)
-# then
-#     echo -n "       Installing Virtualenv..."
-#     virtualenv --python $python --distribute --never-download --prompt='(venv) ' $venv > /dev/null 2>&1
-#     . $venv/bin/activate > /dev/null 2>&1
-#     echo " done"
-
-#     #echo -n "       Installing Mercurial..."
-#     #pip install mercurial > /dev/null 2>&1
-#     #echo " done"
-
-#     #echo -n "       Installing Bazaar..."
-#     #pip install bzr > /dev/null 2>&1
-#     #echo " done"
-# fi
-
 p=$GOPATH/src/$name
 mkdir -p $p
 cp -R $build/* $p
@@ -253,24 +218,22 @@ then
     FLAGS=(${FLAGS[@]} -ldflags "-X $git_describe_symbol $git_describe")
 fi
 
-#update godep
-#echo "-----> updating/installing godep"
-#go get -u github.com/golang/dep/cmd/dep
-#export GO15VENDOREXPERIMENT=1
-
 unset GIT_DIR # unset git dir or it will mess with goinstall
 cd $p
 echo '=== debug'
 pwd
 find .
 echo '=== debug'
-if test -e $build/vendor
-then
-  echo "-----> vendor folder found."
-else
-  echo "-----> Running folder not found. Running: go mod vendor"
-  go mod vendor
-fi
+
+# go should automatically use the vednor dir if it's there.
+# but for now, we won't touch it because it has our ffmpeg in it.
+#if test -e $build/vendor
+#then
+#  echo "-----> vendor folder found."
+#else
+#  echo "-----> Running folder not found. Running: go mod vendor"
+#  go mod vendor
+#fi
 
 echo "-----> Copying workspace"
 mv vendor/* $GOPATH/src
