@@ -265,17 +265,17 @@ find .
 echo '=== debug'
 if test -e $build/vendor
 then
-    echo "-----> Copying workspace"
-    #cp -R $(godep path)/* $GOPATH
-    #cp -R vendor/* $GOPATH/src
-    mv vendor/* $GOPATH/src
-    rm -r vendor
-    echo "-----> Running: go install -v ${FLAGS[@]} ./..."
-    go install -v "${FLAGS[@]}" ./...
+  ;
 else
-    echo "-----> Running: go get ${FLAGS[@]} ./..."
-    go get "${FLAGS[@]}" ./...
-fi
+  echo "-----> Running: go mod vendor"
+  go mod vendor
+if
+
+echo "-----> Copying workspace"
+mv vendor/* $GOPATH/src
+rm -r vendor
+echo "-----> Running: go install -v ${FLAGS[@]} ./..."
+go install -v "${FLAGS[@]}" ./...
 
 echo "-----> adding ~/bin to path"
 mkdir -p $build/.profile.d
