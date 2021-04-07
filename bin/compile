@@ -3,6 +3,7 @@
 
 set -eo pipefail
 
+echo '-------- > Starting compile script'
 echo '---- > Downloading and installing ffmpeg'
 
 indent() {
@@ -306,3 +307,5 @@ rm -r ./test-scripts
 
 echo "-----> Displaying top 100 files and dirs with sizes"
 find . -exec du -sk {} \; | sort -n | tail -100
+
+echo '-------- > Compile script complete'
