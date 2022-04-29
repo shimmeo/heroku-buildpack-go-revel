@@ -250,8 +250,8 @@ mkdir $GOPATH/bin
 go get github.com/revel/cmd/revel
 
 echo "-----> delete not needed packages and update go.sum"
-go get github.com/revel/modules/static
 go mod tidy
+go get github.com/revel/modules/static
 
 echo "-----> building executable"
 echo "       this is just to launch faster than running revel run mashday prod $PORT"
