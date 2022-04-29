@@ -249,6 +249,9 @@ echo "-----> installing revel"
 mkdir $GOPATH/bin
 go get github.com/revel/cmd/revel
 
+echo "-----> delete not needed packages and update go.sum"
+go mod tidy
+
 echo "-----> building executable"
 echo "       this is just to launch faster than running revel run mashday prod $PORT"
 echo "       but it might take a few minutes now..."
